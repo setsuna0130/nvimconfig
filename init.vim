@@ -2,6 +2,8 @@
 set number 
 set relativenumber
 
+set termguicolors
+
 " tab = 4
 "
 set ts=4
@@ -64,6 +66,12 @@ call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-tree/nvim-tree.lua' 
+Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
+Plug 'windwp/nvim-autopairs'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.5' }
+Plug 'folke/tokyonight.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 
 let g:coc_global_extensions = [
@@ -71,6 +79,44 @@ let g:coc_global_extensions = [
 			\'coc-json',
 			\'coc-vimlsp']
 
+lua <<EOF
+
+require("bufferline").setup {
+    options = {
+        -- 使用 nvim 内置lsp
+        diagnostics = "nvim_lsp",
+        -- 左侧让出 nvim-tree 的位置
+        offsets = {{
+            filetype = "NvimTree",
+            text = "File Explorer",
+            highlight = "Directory",
+            text_align = "left"
+        }}
+    }
+}
+
+map("n", "<C-h>", ":BufferLineCyclePrev<CR>", opt)
+map("n", "<C-l>", ":BufferLineCycleNext<CR>", opt)
+EOF
+
 
 lua require'nvim-tree'.setup {}
 map("n", "<A-m>", ":NvimTreeToggle<CR>", opt)
+
+lua require 'nvim-autopairs'.setup{}
+lua require'nvim-treesitter.configs'.setup {
+			\ ensure_installed = { "c", "cpp" },
+			\ highlight = {
+			\ enable = true,
+			\ }
+			\}
+
+
+lua <<EOF 
+
+require('tokyonight').setup{
+			style = "storm"
+			}
+EOF
+
+colorscheme tokyonight
