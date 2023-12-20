@@ -198,7 +198,7 @@ nnoremap <C-l> :BufferLineCycleNext<CR>
 map <LEADER><up> :res +5<CR>
 map <LEADER><down> :res -5<CR>
 map <LEADER><left> :vertical resize -5<CR>
-map <LEADER><ight> :vertical resize +5<CR>
+map <LEADER><right> :vertical resize +5<CR>
 
 nnoremap <leader>ff :Telescope find_files<cr>
 nnoremap <leader>fg :Telescope live_grep<cr>
