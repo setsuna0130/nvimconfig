@@ -34,7 +34,7 @@ dfv      delet find v
 24. `space + f + b` find buffer in pwd
 24. `space + f + h` open Telescope help file
 25. `space + <Ctrl+left/right/up/down>` split window
-
+26. `space + P` open clipboard history
 ## Insert Mode
 1. `Ctrl + Space`  =   Select the Complete
 2.  `Tab `  Down the Complete

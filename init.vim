@@ -47,12 +47,13 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.5' }
 Plug 'folke/tokyonight.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'tpope/vim-surround'
-
 call plug#end()
+
 
 let g:coc_global_extensions = [
 			\'coc-clangd',
 			\'coc-json',
+			\'coc-yank',
 			\'coc-vimlsp']
 
 lua <<EOF
@@ -197,9 +198,16 @@ nnoremap <C-l> :BufferLineCycleNext<CR>
 map <LEADER><up> :res +5<CR>
 map <LEADER><down> :res -5<CR>
 map <LEADER><left> :vertical resize -5<CR>
-map <LEADER><right> :vertical resize +5<CR>
+map <LEADER><ight> :vertical resize +5<CR>
 
 nnoremap <leader>ff :Telescope find_files<cr>
 nnoremap <leader>fg :Telescope live_grep<cr>
 nnoremap <leader>fb :Telescope buffers<cr>
 nnoremap <leader>fh :Telescope help_tags<cr>
+
+nnoremap <leader><C-left> :vsp<CR> <C-w>h<CR>
+nnoremap <leader><C-right> :vsp<CR><C-w>l<CR>
+nnoremap <leader><C-up> :sp<CR><C-w>k<CR>
+nnoremap <leader><C-down> :sp<CR><C-w>j<CR>
+
+nnoremap <silent> <space>p  :<C-u>CocList -A --normal yank<cr>
