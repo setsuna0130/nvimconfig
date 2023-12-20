@@ -73,9 +73,6 @@ require("bufferline").setup {
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
   hijack_cursor = true,
-  open_on_setup = false,
-  open_on_setup_file = true,
-  ignore_buffer_on_setup = true,
   system_open = {
     cmd = "open",
   },
@@ -115,6 +112,16 @@ require("nvim-tree").setup({
   },
 })
 
+require('telescope').setup {
+  extensions = {
+    fzf = {
+      fuzzy = true,                    -- false will only do exact matching
+      override_generic_sorter = true,  -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+    }
+  }
+}
 EOF
 
 
@@ -153,7 +160,7 @@ endfunction
 inoremap <silent><expr> <C-space> coc#refresh()
 
 
-
+nmap Q :q<CR>
 inoremap jk <ESC> 
 
 
@@ -189,3 +196,8 @@ map <LEADER><up> :res +5<CR>
 map <LEADER><down> :res -5<CR>
 map <LEADER><left> :vertical resize -5<CR>
 map <LEADER><right> :vertical resize +5<CR>
+
+nnoremap <leader>ff :Telescope find_files<cr>
+nnoremap <leader>fg :Telescope live_grep<cr>
+nnoremap <leader>fb :Telescope buffers<cr>
+nnoremap <leader>fh :Telescope help_tags<cr>
